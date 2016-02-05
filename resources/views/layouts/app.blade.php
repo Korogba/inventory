@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>Dash Auto Store</title>
 
@@ -51,10 +52,25 @@
                 @if( Auth::check() )
                     <div class="collapse navbar-collapse" id="app-navbar-collapse">
 
+                        <!-- Left Side Of Navbar -->
+                        <ul class="nav navbar-nav">
+                            <li class="{{ set_active('price') }}"><a href="{{ url('/price') }}">Find Price</a></li>
+                            <li class="{{ set_active('analysis') }}"><a href="{{ url('/analysis') }}">Analysis</a></li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Update Database <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">Company</a></li>
+                                    <li><a href="#">Pricing</a></li>
+                                    <li><a href="#">Available Locations</a></li>
+                                    <li><a href="#">Available Services</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+
                         <!-- Right Side Of Navbar -->
                         <ul class="nav navbar-nav navbar-right">
 
-                            <li><a href="{{ url('/register') }}">Register New User</a></li>
+                            <li class="{{ set_active('register') }}"><a href="{{ url('/register') }}">Register New User</a></li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     {{ Auth::user()->name }} <span class="caret"></span>
@@ -79,6 +95,13 @@
     {{--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>--}}
     {{--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>--}}
     {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
+    <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+    </script>
     @yield('foot')
 </body>
 </html>

@@ -179,6 +179,11 @@ return [
          * with a touch of the Laravel Magic.
          */
         Maatwebsite\Excel\ExcelServiceProvider::class,
+
+        /*
+         * Laravel form facade and functions
+         */
+        Collective\Html\HtmlServiceProvider::class,
     ],
 
     /*
@@ -226,6 +231,8 @@ return [
         'View'      => Illuminate\Support\Facades\View::class,
         'Flash'     => Laracasts\Flash\Flash::class,
         'Excel'     => Maatwebsite\Excel\Facades\Excel::class,
+        'Form'      => Collective\Html\FormFacade::class,
+        'Html'      => Collective\Html\HtmlFacade::class,
 
     ],
 
