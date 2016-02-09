@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateRepairTypesTable extends Migration {
+class CreateSubcomponentTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,10 +12,11 @@ class CreateRepairTypesTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('repair_types', function(Blueprint $table)
+		Schema::create('subcomponent', function(Blueprint $table)
 		{
-			$table->increments('id');
+			$table->increments('subcomponent_id');
 			$table->string('name', 45);
+			$table->integer('component_id')->unsigned()->index('fk_type_id_idx');
 			$table->timestamps();
 		});
 	}
@@ -28,7 +29,7 @@ class CreateRepairTypesTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('repair_types');
+		Schema::drop('subcomponent');
 	}
 
 }

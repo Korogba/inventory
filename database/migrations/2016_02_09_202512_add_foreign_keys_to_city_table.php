@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class AddForeignKeysToCitysTable extends Migration {
+class AddForeignKeysToCityTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,9 +12,9 @@ class AddForeignKeysToCitysTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::table('citys', function(Blueprint $table)
+		Schema::table('city', function(Blueprint $table)
 		{
-			$table->foreign('state_id', 'fk_state_id')->references('id')->on('states')->onUpdate('NO ACTION')->onDelete('NO ACTION');
+			$table->foreign('state_id', 'fk_state_id')->references('state_id')->on('state')->onUpdate('NO ACTION')->onDelete('NO ACTION');
 		});
 	}
 
@@ -26,7 +26,7 @@ class AddForeignKeysToCitysTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::table('citys', function(Blueprint $table)
+		Schema::table('city', function(Blueprint $table)
 		{
 			$table->dropForeign('fk_state_id');
 		});

@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\City;
 use App\Http\Requests;
 use App\Http\Requests\ParseExcelRequest;
 use App\RepairDetail;
 use App\State;
+use DebugBar\DebugBar;
 use Excel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
@@ -75,11 +77,17 @@ class HomeController extends Controller
     {
         if($request->ajax()) {
             $name = Input::get('name');
-            if(strcasecmp($name, "state" == 0)) {
+            if(strcasecmp($name, "state") == 0) {
                 $stateid = Input::get('select');
                 $state = State::findOrFail($stateid);
                 $cities = $this->return_city($state);
                 return Response::json(["result" => array("name" => "cities", "value" => $cities)]);
+            }
+            if(strcasecmp($name, "cities") == 0) {
+                $cityid = Input::get('select');
+                $city = City::findOrFail($cityid);
+                $zones = $this->return_zone($city);
+                return Response::json(["result" => array("name" => "zones", "value" => $zones)]);
             }
         }
     }
@@ -135,5 +143,13 @@ class HomeController extends Controller
                       ->orderBy('name', 'asc')
                       ->get()
                       ->toArray();
+    }
+
+    private function return_zone(City $city)
+    {
+        return $city->zone()
+                    ->orderBy('name', 'asc')
+                    ->get()
+                    ->toArray();
     }
 }

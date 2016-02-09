@@ -184,6 +184,12 @@ return [
          * Laravel form facade and functions
          */
         Collective\Html\HtmlServiceProvider::class,
+
+        /*
+         * This is a package to integrate PHP Debug Bar with Laravel 5. It includes a
+         * ServiceProvider to register the debugbar and attach it to the output
+         */
+        Barryvdh\Debugbar\ServiceProvider::class,
     ],
 
     /*
@@ -233,6 +239,7 @@ return [
         'Excel'     => Maatwebsite\Excel\Facades\Excel::class,
         'Form'      => Collective\Html\FormFacade::class,
         'Html'      => Collective\Html\HtmlFacade::class,
+        'Debugbar'  => Barryvdh\Debugbar\Facade::class,
 
     ],
 

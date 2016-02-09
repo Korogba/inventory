@@ -5,7 +5,7 @@
     <div class="container">
 
         <div class="page-header">
-            <h1>Get Price <small>Start by selecting location</small></h1>
+            <h1>Get Price <small>Start by selecting location </small> <i class="fa fa-spinner fa-pulse hidden" id="loading_ajax"></i></h1>
         </div>
 
         <div class="row">
@@ -15,13 +15,13 @@
 
                     <div class="panel-body">
 
-                        <form class="form-horizontal" id="appendform" role="form" method="POST" action="{{ url('/query') }}">
+                        <form class="form-horizontal col-md-10 pull-left" id="appendform" role="form" method="POST" action="{{ url('/query') }}">
                             {!! csrf_field() !!}
 
                             <div class="form-group{{ $errors->has('state') ? ' has-error' : '' }}" id="state">
                                 <label class="col-md-4 control-label">State</label>
 
-                                <div class="col-md-6">
+                                <div class="col-md-6" err_display="err_display">
                                     {!! Form::select('state', $state, null, ['class'=>'form-control query']) !!}
                                     @if ($errors->has('location'))
                                         <span class="help-block">
@@ -51,46 +51,6 @@
 
 @section('foot')
 
-    <script>
-
-        $(document).ready(function(){
-
-            $('body').on('change','select.query', function(event){
-                // Prevent default behaviour
-                event.preventDefault();
-                // Get some values from elements on the page:
-                var url = '/query';
-                var type = $(this).attr('name');
-                var value = $(this).val();
-
-                $.ajax({
-                    type: 'post',
-                    url: url,
-                    data: {name: type, select: value},
-                    success: function(data){
-                        var name = data.result.name;
-
-                        if ($("#" + name).length) {
-                            $("#" + name).remove();
-                        }
-
-                        var uppercase_value = name.toLowerCase().replace(/\b[a-z]/g, function (letter) {
-                            return letter.toUpperCase();
-                        });
-                        $('#insertbefore').before('<div class="form-group" id="' +
-                        name + '">  <label class="col-md-4 control-label">' +
-                        uppercase_value + '</label><div class="col-md-6"> <select class="form-control query" name="' + name
-                        + '"> </select> </div></div>');
-
-                        $.each(data.result.value, function(key, value){
-                            $('select[name = '+ name +']').append($('<option></option>')
-                                     .attr('value',value.id)
-                                     .text(value.name));
-                        });
-                    }
-                });
-            });
-        });
-    </script>
+    <script src="{{ asset('js/ajaxload.js') }}"> </script>
 
 @endsection
