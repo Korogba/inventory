@@ -15,7 +15,6 @@ class AddForeignKeysToAddressTable extends Migration {
 		Schema::table('address', function(Blueprint $table)
 		{
 			$table->foreign('zone_id', 'fk_address_zone_id')->references('zone_id')->on('zone')->onUpdate('NO ACTION')->onDelete('NO ACTION');
-			$table->foreign('repairshop_id', 'fk_address_repairshop_id')->references('repairshop_id')->on('repairshop')->onUpdate('NO ACTION')->onDelete('NO ACTION');
 		});
 	}
 
@@ -30,7 +29,6 @@ class AddForeignKeysToAddressTable extends Migration {
 		Schema::table('address', function(Blueprint $table)
 		{
 			$table->dropForeign('fk_address_zone_id');
-			$table->dropForeign('fk_address_repairshop_id');
 		});
 	}
 

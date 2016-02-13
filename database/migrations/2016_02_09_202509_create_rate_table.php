@@ -21,7 +21,7 @@ class CreateRateTable extends Migration {
 			$table->decimal('amount', 9)->unsigned();
 			$table->timestamps();
 			$table->decimal('min_amount', 9);
-			$table->decimal('max_amout', 9);
+			$table->decimal('max_amount', 9);
 			$table->unique(['subcomponent_id','repairshop_id','carmodel_id'], 'unique');
 		});
 	}

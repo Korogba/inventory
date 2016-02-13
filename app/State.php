@@ -7,12 +7,26 @@ use Illuminate\Database\Eloquent\Model;
 class State extends Model
 {
     /**
+     * Specify the primary key
+     *
+     * @var string
+     */
+    protected $primaryKey = 'state_id';
+
+    /**
+     * The database table used by the model.
+     *
+     * @var string
+     */
+    protected $table = 'state';
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name',
+        'state',
     ];
 
     /**

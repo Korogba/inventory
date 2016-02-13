@@ -8,93 +8,24 @@
 
     <title>Dash Auto Store</title>
 
-    <!-- Fonts -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
-    <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700" rel='stylesheet' type='text/css'>
+    <!--     Fonts and icons     -->
+    <link rel="icon" type="image/png" href="{{ asset('img/favicon.ico') }}">
 
     <!-- Styles -->
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/bootstrap-theme.min.css') }}">
-    {{--<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">--}}
-    {{-- <link href="{{ elixir('css/app.css') }}" rel="stylesheet"> --}}
+
     @yield('head')
 
-    <style>
-        body {
-            font-family: 'Lato';
-        }
-
-        .fa-btn {
-            margin-right: 6px;
-        }
-    </style>
 </head>
-<body id="app-layout">
-    <!-- Authentication Links -->
-    @if( !Request::is('/') )
-        <nav class="navbar navbar-default">
-            <div class="container">
-                <div class="navbar-header">
 
-                    <!-- Collapsed Hamburger -->
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
-                        <span class="sr-only">Toggle Navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-
-                    <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ Auth::check()? url('/home'): url('/') }}">
-                        Auto Store
-                    </a>
-                </div>
-                @if( Auth::check() )
-                    <div class="collapse navbar-collapse" id="app-navbar-collapse">
-
-                        <!-- Left Side Of Navbar -->
-                        <ul class="nav navbar-nav">
-                            <li class="{{ set_active('price') }}"><a href="{{ url('/price') }}">Find Price</a></li>
-                            <li class="{{ set_active('analysis') }}"><a href="{{ url('/analysis') }}">Analysis</a></li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Update Database <span class="caret"></span></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">Company</a></li>
-                                    <li><a href="#">Pricing</a></li>
-                                    <li><a href="#">Available Locations</a></li>
-                                    <li><a href="#">Available Services</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-
-                        <!-- Right Side Of Navbar -->
-                        <ul class="nav navbar-nav navbar-right">
-
-                            <li class="{{ set_active('register') }}"><a href="{{ url('/register') }}">Register New User</a></li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
-
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-                @endif
-            </div>
-        </nav>
-    @endif
+<body>
 
     @yield('content')
 
-    <!-- JavaScripts -->
+    <!-- Core JS Files -->
     <script src="{{ asset('js/jquery-1.12.0.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
-    {{--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>--}}
-    {{--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>--}}
-    {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
+
     <script>
         $.ajaxSetup({
             headers: {

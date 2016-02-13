@@ -6,13 +6,19 @@ use Illuminate\Database\Eloquent\Model;
 
 class City extends Model
 {
+    /**
+     * Specify the primary key
+     *
+     * @var string
+     */
+    protected $primaryKey = 'city_id';
 
     /**
      * The database table used by the model.
      *
      * @var string
      */
-    protected $table = 'citys';
+    protected $table = 'city';
 
     /**
      * The attributes that are mass assignable.
@@ -20,7 +26,7 @@ class City extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'state_id',
+        'city', 'state_id',
     ];
 
     /**A city can be located in a particular state

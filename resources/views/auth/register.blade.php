@@ -1,58 +1,68 @@
-@extends('layouts.app')
+@extends('layouts._dashboard')
 
-@section('content')
-<div class="container">
-    @include('flash::message')
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Register</div>
-                <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}">
-                        {!! csrf_field() !!}
+@section('body')
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="header">
+                        <h4 class="title">Register User</h4>
+                    </div>
+                    <div class="content">
+                        <form method="POST" action="{{ url('/register') }}">
+                            {!! csrf_field() !!}
 
-                        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                            <label class="col-md-4 control-label">Name</label>
+                            <div class="row">
+                                <div class="col-md-6 col-md-offset-1">
+                                    <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+                                        <label>Name</label>
+                                        <input type="text" class="form-control" name="name" value="{{ old('name') }}">
+                                        @if ($errors->has('name'))
+                                            <span class="help-block">
+                                                <strong>{{ $errors->first('name') }}</strong>
+                                            </span>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 col-md-offset-1">
+                                    <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                                        <label>E-Mail Address</label>
+                                        <input type="email" class="form-control" name="email" value="{{ old('email') }}">
+                                        @if ($errors->has('email'))
+                                            <span class="help-block">
+                                                <strong>{{ $errors->first('email') }}</strong>
+                                            </span>
+                                        @endif
+                                    </div>
+                                    <input type="hidden" class="form-control" name="password" value="password">
+                                    <input type="hidden" class="form-control" name="password_confirmation" value="password">
+                                </div>
+                            </div>
 
-                            <div class="col-md-6">
-                                <input type="text" class="form-control" name="name" value="{{ old('name') }}">
+                            <div class="row">
+                                <div class="col-md-6 col-md-offset-1">
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-primary btn-fill">
+                                            <i class="fa fa-btn fa-user"></i>Register
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
 
-                                @if ($errors->has('name'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('name') }}</strong>
-                                    </span>
-                                @endif
+                        </form>
+
+                        <div class="row">
+                            <div class="col-md-6 col-md-offset-1">
+                                @include('flash::message')
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label class="col-md-4 control-label">E-Mail Address</label>
-
-                            <div class="col-md-6">
-                                <input type="email" class="form-control" name="email" value="{{ old('email') }}">
-
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <input type="hidden" class="form-control" name="password" value="password">
-                        <input type="hidden" class="form-control" name="password_confirmation" value="password">
-
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    <i class="fa fa-btn fa-user"></i>Register
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+
 @endsection

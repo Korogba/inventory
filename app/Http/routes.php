@@ -31,9 +31,14 @@ Route::group(['middleware' => 'web'], function () {
     Route::auth();
 
     Route::get('/home', 'HomeController@index');
-    Route::get('/price', 'HomeController@price');
+    Route::get('/rate', 'HomeController@rate');
+    Route::get('/upload', 'HomeController@upload');
     Route::get('/analysis', 'HomeController@analysis');
-    Route::post('/home', 'HomeController@upload');
-    Route::post('/price', 'HomeController@getprice');
+    Route::get('/profile', 'HomeController@profile');
+    Route::post('/upload', 'HomeController@postupload');
+    Route::post('/rate', 'HomeController@postrate');
+    Route::post('/analysis', 'HomeController@postanalysis');
+    Route::post('/profile', 'HomeController@postprofile');
     Route::post('/query', 'HomeController@ajaxquery');
+    Route::post('/chartdata', 'HomeController@chartdata');
 });

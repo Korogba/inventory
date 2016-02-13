@@ -4,15 +4,22 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Company extends Model
+class RepairShop extends Model
 {
+
+    /**
+     * Specify the primary key
+     *
+     * @var string
+     */
+    protected $primaryKey = 'repairshop_id';
 
     /**
      * The database table used by the model.
      *
      * @var string
      */
-    protected $table = 'companys';
+    protected $table = 'repairshop';
 
     /**
      * The attributes that are mass assignable.
@@ -20,10 +27,10 @@ class Company extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'address', 'email', 'zone', 'phone_number',
+        'repairshop', 'address_id', 'email', 'zone_id', 'phone_number',
     ];
 
-    /**A company can be located in a zone
+    /**A repairshop can be located in a zone
      * Return this companys zone
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
@@ -33,12 +40,12 @@ class Company extends Model
     }
 
     /**
-     * Companies can have different prices depending on repair details and company
-     * Get all prices for this detail
+     * Repairshops can have different prices depending on repair details and company
+     * Get all prices for this repairshop
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function price()
+    public function rate()
     {
-        return $this->hasMany('App\Price');
+        return $this->hasMany('App\Rate');
     }
 }

@@ -4,14 +4,21 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class RepairType extends Model
+class Component extends Model
 {
+    /**
+     * Specify the primary key
+     *
+     * @var string
+     */
+    protected $primaryKey = 'component_id';
+
     /**
      * The database table used by the model.
      *
      * @var string
      */
-    protected $table = 'repair_type';
+    protected $table = 'component';
 
     /**
      * The attributes that are mass assignable.
@@ -19,16 +26,16 @@ class RepairType extends Model
      * @var array
      */
     protected $fillable = [
-        'name',
+        'component',
     ];
 
     /**
-     * Each RepairType can have different details.
+     * Each Component can have different subcomponents.
      * Get this types details
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function detail()
+    public function component()
     {
-        return $this->hasMany('App\RepairDetail');
+        return $this->hasMany('App\SubComponent');
     }
 }

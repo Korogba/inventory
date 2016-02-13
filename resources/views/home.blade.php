@@ -1,44 +1,56 @@
-@extends('layouts.app')
+@extends('layouts._dashboard')
 
-@section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-10 col-md-offset-1">
-            <div class="panel panel-default">
-                <div class="panel-heading">Dashboard</div>
+@section('body')
 
-                <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/home') }}" enctype="multipart/form-data">
-                        {!! csrf_field() !!}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="header">
+                        <h4 class="title">State</h4>
 
-                        <div class="col-md-6">
-                            <label>Upload File</label>
-                            <input type="file" name="excel" accept=".csv, text/rtf, application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
-                        </div>
+                        <p class="category">Spread of repairshops in states</p>
+                    </div>
+                    <div class="content">
+                        <div id="chartPreferences" class="ct-chart ct-perfect-fourth"></div>
 
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    <i class="fa fa-btn fa-sign-in"></i>Submit
-                                </button>
+                        <div class="footer">
+                            <hr>
+                            <div class="stats" id="stateStats">
+                                <i class="fa fa-check"></i>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
 
-                    </form>
+            <div class="col-md-8">
+                <div class="card ">
+                    <div class="header">
+                        <h4 class="title">Zones</h4>
+
+                        <p class="category">Zones with highest number of repairshops</p>
+                    </div>
+                    <div class="content">
+                        <div id="chartActivity" class="ct-chart"></div>
+
+                        <div class="footer">
+                            <hr>
+                            <div class="stats">
+                                <i class="fa fa-check"></i> Latest from database
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+
     </div>
 
-    @if (count($errors) > 0)
-        <div class="alert alert-danger alert-dismissible">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
-</div>
+@endsection
+
+@section('custom_javascript')
+
+    <script src="{{ asset('js/chartdata.js') }}"></script>
+
 @endsection

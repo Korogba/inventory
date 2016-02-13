@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests;
 
-use App\Http\Requests\Request;
 
 class ParseExcelRequest extends Request
 {
@@ -24,7 +23,7 @@ class ParseExcelRequest extends Request
     public function rules()
     {
         return [
-            'excel' => 'required|mimes:csv,xls,xlsx',
+            'excel' => 'required|mimes:csv,xls,xlsx,text/comma-separated-values, text/csv, text',
         ];
     }
 }
