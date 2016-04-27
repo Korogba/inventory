@@ -164,11 +164,6 @@ return [
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
 
         /*
-         * Providers for database generations from schema/sql
-         */
-        Xethron\MigrationsGenerator\MigrationsGeneratorServiceProvider::class,
-
-        /*
          * Easy Flash Messages
          */
         Laracasts\Flash\FlashServiceProvider::class,

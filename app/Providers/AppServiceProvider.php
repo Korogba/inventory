@@ -23,8 +23,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        /*
+         * Providers for database generations from schema/sql
+         */
         if ($this->app->environment() == 'local') {
             $this->app->register('Way\Generators\GeneratorsServiceProvider');
+            $this->app->register('Xethron\MigrationsGenerator\MigrationsGeneratorServiceProvider');
         }
     }
 
