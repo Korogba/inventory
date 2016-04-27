@@ -166,7 +166,6 @@ return [
         /*
          * Providers for database generations from schema/sql
          */
-        Way\Generators\GeneratorsServiceProvider::class,
         Xethron\MigrationsGenerator\MigrationsGeneratorServiceProvider::class,
 
         /*
