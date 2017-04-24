@@ -2,7 +2,7 @@
 
 Kindly run the command "composer update" from the terminal/command prompt to download all the necessary dependencies for this application before running it. You can get composer from [Composer website](https://getcomposer.org/).
 
-Also find and download the repairshop.sql file from the downloads tab. Import this file using phpMyAdmin or any other appropriate means to have a sample seeded database that the application can work with.
+Also find and download the repairshop.sql file from the root directory of this repo. Import this file using phpMyAdmin or any other appropriate means to have a sample seeded database that the application can work with.
 
 To properly configure the database, create a .env file in the root directory with the following information in it:
 
